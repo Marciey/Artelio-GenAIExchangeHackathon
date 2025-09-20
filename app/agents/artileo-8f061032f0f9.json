@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "artileo",
+  "private_key_id": "8f061032f0f9a291616b7c4cc13ef561d7f3ac34",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCtreG1pIa7IvQx\n43JnrQbpu9uNaCY/Opd/pgYKGcpUltjmIhpcbub/ccgfg6FBBAS1XuCM5AhQghOU\ndUKVnzk2wv/Of7whJ+kpmQM6wIh7HoejEKyL8+n0Z4d2R0GRbVsQ5r2R7iqo+8hh\nN7I0+R0oZQIX0tlosQrwQLWf8VS4stL7aFJobUJBcqu3FcqrB6iTis2oWan5TnJ/\nPH03Ghr/UBDAx4B6lZDQrwi/LFBLFnMQS5148K8et88VU8AVQUzT3//NzISYypea\nyMnxSjWwWVo+kHCSQ3jdidImGV+xyZRzpZImmBGgrVWPX1YwSPnxiRJiAcRFg1Qj\nkiohYiutAgMBAAECggEAEaNAckFom1WT5gMaqbO1KYR16fjjNXWeUAzMvTbcSNXe\n5hQdiDiNBfEIqUalWCRv0/l0JWq8+2wST/fOkMJQPaL09oQbV2SltZ8/6DYIRjSW\nArXdSAM3xaXD6HuZCYtI/cDpDIpa07lqIpFU7DNGRkVnvoKfqJWeLkLsDvejqnP3\nVKDI+rdk/+ZgwGq0yKj+KfXNszT7OyCtmzdKkjlYKMrh2aGZQ/XbJXaKRrXUK0mR\nvBQCDRtmd91GT+2ucZiy688EAxn9BlmMdrndzBbQjFWY+XL7cqsapXd47ahFxwoJ\ngrMOvHYoSvftuIUgHg9HlFWv3fQAWthCzvkPbOOM8QKBgQD0ZVeuXlWg5PZTh/xJ\nI+OqiEx5Zu5Dr2C8MFZ2Hf2kaB8Rg5WHc6/TyUuGxoBQaoacXpL1A++HxsBUk/xo\nDtsQ6AB+1LZ3c/AgPDPQi9aE0QojcJ+0bGaSg1QmRSpHNWsGrYJFFd288jrQCAQj\nGrUK+DiMe2/6OkzILqMZyiEUBQKBgQC17PiO04QhUjOBmU0xxuxXUlih9AqWRNrR\nLf8EwEzRSNGKxKs8YDnzwGBOUsBj6zAoVE0WWHJQKdapXcf0EIKP/C81gFO5ZNYM\nz/tJ53Aqh5EDzH/nTJg1n/XX/gs3NPee/zdrn+WEPORPsyJ6fIM8DV0OAGwymJWp\n0L5t8iuxiQKBgQCFjCtRmTLpbLQ+CP0PapEpyrkfTeO9EMSnkTJt8Q19HXh8tY6s\nKcdWz5R53VaYmt1b7UIYqUHmy/ClRwiSRCvpHR3IMKxUsgHxW3Rk7UUX5rLHku9y\nRBn4zdLZ5smnh8UoLQAWiFBWw3bn3rmEBUAQ8nrUKU+TSPBUI0f0+8L/kQKBgDSg\nPi6ixSAWdUvSGuCBWLDR403GGKHrfRjxo0mujwojdGoeBiLK+zilt7YwffLpf97K\ntBn4r+i8kZogxMy3Ue1w1/80BgQlRT4jk9+HEY1b9fkRWRaBs64ffbBjjr8DlXXr\nAg8iC/S64Jilix2/kv72Jqr8OFBSj0i2V7/aRAVxAoGARbIgsC1MqBojOgXf+8Hz\nP0OL+clwDwKtNICeqg2HAOFyqmxSlAABzsjz8bOnytauXSxMPIsZnNQMBZFFyv/G\npT+CeP50OJHymZqr1aj8vUxPlReU9uu+hjLzt+qaOh3W6XW5uE5cRG5kdZDONYfJ\nMRDp3Xbc/gIZVIlYp5qca5g=\n-----END PRIVATE KEY-----\n",
+  "client_email": "vertex-ai-agent@artileo.iam.gserviceaccount.com",
+  "client_id": "103715231559950381679",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/vertex-ai-agent%40artileo.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
