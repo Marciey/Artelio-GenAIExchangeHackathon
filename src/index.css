@@ -2,118 +2,118 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ---------- design tokens (kept exactly) ---------- */
+/* ---------- design tokens (kept & corrected) ---------- */
 @layer base {
   :root {
-    --background: 255 255% 255%; /* pure white */
-    --foreground: 17 24 39; /* slate-900 */
-    --card: 255 255% 255%;
-    --card-foreground: 17 24 39;
-    --muted: 249 250 251; /* slate-50 */
-    --muted-foreground: 107 114 128; /* slate-500 */
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222.2 84% 4.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222.2 84% 4.9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    /* Base light mode tokens (valid values) */
+    --background: #ffffff;            /* white */
+    --foreground: #111827;            /* slate-900 */
+    --card: #ffffff;
+    --card-foreground: #111827;
+    --muted: #f9fafb;                 /* slate-50 */
+    --muted-foreground: #6b7280;      /* slate-500 */
+    --popover: #ffffff;
+    --popover-foreground: #111827;
+    --primary: #3b82f6;               /* blue-500 */
+    --primary-foreground: #ffffff;
+    --secondary: #06b6d4;             /* cyan-500 */
+    --secondary-foreground: #ffffff;
+    --accent: #ff6b35;
+    --accent-foreground: #ffffff;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: #e6e9ee;
+    --input: #f3f4f6;
+    --ring: #6366f1;
     --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 84% 4.9%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 94.1%;
-  }
-}
-
-/* Keep earlier global base styles but enhance typography & background */
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  /* Use Inter for body and Playfair for headings (ensure index.html loads Google fonts) */
-  :root {
-    --bg-start: #f6eef9;  /* subtle warm */
-    --bg-end:   #eef6fb;  /* pale blue */
-    --hero-text: #0f172a; /* dark slate */
+    --bg-start: #f6eef9;              /* subtle warm */
+    --bg-end: #eef6fb;                /* pale blue */
+    --hero-text: #0f172a;
     --muted-text: #6b7280;
     --accent-1: #ff6b35;
     --accent-2: #ffb86b;
   }
 
-  html, body {
-    height: 100%;
+  /* Dark tokens (kept but valid) */
+  .dark {
+    --background: #0b1220;            /* deep slate */
+    --foreground: #f8fafc;            /* near white */
+    --card: #0f1724;
+    --card-foreground: #f8fafc;
+    --popover: #0f1724;
+    --popover-foreground: #f8fafc;
+    --primary: #7c3aed;               /* purple-600 */
+    --primary-foreground: #ffffff;
+    --secondary: #1f2937;
+    --secondary-foreground: #e6eef8;
+    --muted: #111827;
+    --muted-foreground: #94a3b8;
+    --accent: #ff7a3b;
+    --accent-foreground: #ffffff;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --border: #1f2937;
+    --input: #0b1220;
+    --ring: #7c3aed;
   }
+}
 
+/* ---------- global base styles & accessibility ---------- */
+@layer base {
+  * { @apply border-border; box-sizing: border-box; }
+
+  html, body, #root { height: 100%; }
+
+  /* Global light background + readable foreground */
   body {
-    @apply bg-background text-foreground;
-    /* override to nicer visible colors */
     font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
-    color: rgb(31 41 55); /* improved readable color */
+    color: var(--foreground);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+    margin: 0;
+    line-height: 1.4;
   }
 
-  /* Headings use display font if available */
+  /* Headings use display font if loaded */
   h1, h2, h3, .font-display {
     font-family: 'Playfair Display', Georgia, Cambria, "Times New Roman", serif;
+    color: var(--hero-text);
   }
 
-  /* Better default paragraph contrast */
-  p, li, span {
-    color: rgba(31, 41, 55, 0.92);
+  /* Default paragraph/link color */
+  p, li, span, a {
+    color: rgba(17,24,39,0.95); /* strong readable text */
   }
 
-  /* Focus ring for accessibility */
+  /* Focus ring for keyboard users */
   :focus-visible {
-    outline: 3px solid rgba(99,102,241,0.22);
+    outline: 3px solid rgba(99,102,241,0.20);
     outline-offset: 3px;
     border-radius: 6px;
   }
+
+  /* Ensure components that rely on `text-white` inside dark cards still work:
+     We prefer to use semantic classes for contrast, but keep this safe. */
+  .card-elev, .card-elev * { color: var(--card-foreground); }
 }
 
 /* ---------- Custom styles for Artelio (retained + enhanced) ---------- */
 
-/* starry-bg kept as before */
+/* starry-bg (kept) */
 .starry-bg {
   background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
   background-image:
-    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-    radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.06) 1px, transparent 1px),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06) 1px, transparent 1px),
+    radial-gradient(circle at 40% 80%, rgba(255,255,255,0.06) 1px, transparent 1px);
   background-size: 200px 200px, 300px 300px, 250px 250px;
 }
 
 /* Gradient text for headline (kept and improved) */
 .gradient-text {
-  background: linear-gradient(90deg, #ff6b35 0%, #f7931e 50%, #ffd700 100%);
+  background: linear-gradient(90deg, var(--accent-1) 0%, #f7931e 50%, #ffd700 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -123,13 +123,11 @@
 
 /* subtle glow for CTA usage */
 .glow-effect {
-  box-shadow: 0 8px 30px rgba(255, 107, 53, 0.14);
+  box-shadow: 0 10px 30px rgba(255,107,53,0.14);
 }
 
-/* keep float animation */
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
+/* float animation */
+.animate-float { animation: float 6s ease-in-out infinite; }
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
@@ -139,123 +137,101 @@
 
 /* Elevated card style to reuse across components */
 .card-elev {
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255,255,255,0.04);
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.98));
+  border: 1px solid var(--border);
   backdrop-filter: blur(6px);
-  box-shadow: 0 10px 30px rgba(18,22,34,0.08);
+  box-shadow: 0 12px 40px rgba(2,6,23,0.06);
   border-radius: 12px;
+  color: var(--card-foreground);
 }
 
-/* Primary CTA -- use this on main buttons (.btn-primary) */
+/* For dark mode keep card darker */
+.dark .card-elev {
+  background: linear-gradient(180deg, rgba(15,23,36,0.85), rgba(10,14,20,0.75));
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 12px 40px rgba(2,6,23,0.75);
+}
+
+/* Primary CTA */
 .btn-primary {
   background: linear-gradient(90deg,#2f6df6 0%, #6f3ff3 100%);
   color: white;
-  padding: 0.8rem 1.8rem;
+  padding: 0.75rem 1.6rem;
   border-radius: 9999px;
-  box-shadow: 0 12px 36px rgba(47,109,246,0.18);
-  font-weight: 600;
+  box-shadow: 0 12px 36px rgba(47,109,246,0.16);
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
 /* Secondary CTA */
 .btn-secondary {
   background: linear-gradient(90deg,#ff7a3b 0%, #ffb86b 100%);
   color: white;
-  padding: 0.8rem 1.8rem;
+  padding: 0.75rem 1.6rem;
   border-radius: 9999px;
   box-shadow: 0 12px 36px rgba(255,120,59,0.12);
-  font-weight: 600;
+  font-weight: 700;
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
 /* Muted-but-strong text for small descriptions */
-.text-muted-strong {
-  color: #9CA3AF;
-}
+.text-muted-strong { color: var(--muted-foreground); }
 
-/* Floating voice FAB (place <div class="fab-voice"> inside JSX if desired) */
+/* Floating voice FAB */
 .fab-voice {
-  width: 64px;
-  height: 64px;
-  border-radius: 999px;
-  position: fixed;
-  right: 28px;
-  bottom: 28px;
-  background: linear-gradient(135deg,#7f3ff3,#ff6b35);
-  box-shadow: 0 16px 40px rgba(127,63,243,0.22);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index: 60;
-  cursor: pointer;
+  width: 64px; height: 64px; border-radius: 999px;
+  position: fixed; right: 28px; bottom: 28px;
+  background: linear-gradient(135deg,var(--primary), var(--accent));
+  box-shadow: 0 16px 40px rgba(127,63,243,0.14);
+  display:flex; align-items:center; justify-content:center;
+  z-index: 60; cursor: pointer;
+  color: white;
 }
 
 /* Small icon circle for agent icons */
 .icon-circle {
-  width: 56px;
-  height: 56px;
-  border-radius: 999px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow: 0 8px 20px rgba(2,6,23,0.08);
+  width: 56px; height: 56px; border-radius: 999px;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 10px 24px rgba(2,6,23,0.06);
 }
 
 /* Responsive hero headline sizes when you add class .hero-title */
-.hero-title {
-  font-size: 3.25rem;
-  line-height: 1.02;
-  font-weight: 700;
-}
-@media (min-width: 768px) {
-  .hero-title { font-size: 4.5rem; }
-}
-@media (min-width: 1024px) {
-  .hero-title { font-size: 6rem; }
-}
+.hero-title { font-size: 3.25rem; line-height: 1.02; font-weight: 700; color: var(--hero-text); }
+@media (min-width: 768px) { .hero-title { font-size: 4.5rem; } }
+@media (min-width: 1024px) { .hero-title { font-size: 6rem; } }
 
 /* Card content inner spacing utility */
-.card-inner {
-  padding: 1rem;
-}
+.card-inner { padding: 1rem; }
 
 /* small helper for badges / status */
 .badge {
-  display:inline-flex;
-  align-items:center;
-  gap:0.5rem;
-  padding:0.25rem 0.6rem;
-  background: rgba(255,255,255,0.03);
-  border-radius: 999px;
-  font-size: 0.8rem;
+  display:inline-flex; align-items:center; gap:0.5rem;
+  padding:0.25rem 0.6rem; background: rgba(17,24,39,0.03);
+  border-radius: 999px; font-size: 0.8rem; color: var(--muted-foreground);
 }
 
 /* Improve form inputs (if used) */
 .input-pleasant {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.04);
-  padding: 0.6rem 0.8rem;
-  border-radius: 8px;
-  color: #0f172a;
+  background: var(--input);
+  border: 1px solid var(--border);
+  padding: 0.6rem 0.8rem; border-radius: 8px; color: var(--foreground);
 }
 
 /* ---------- small accessibility polish ---------- */
 /* increase tappable areas on small buttons */
-.btn-touch {
-  padding: 0.85rem 1.25rem;
-  min-height: 44px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-}
+.btn-touch { padding: 0.85rem 1.25rem; min-height: 44px; display:inline-flex; align-items:center; justify-content:center; }
 
 /* ensure images are responsive */
-.responsive-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+.responsive-img { max-width: 100%; height: auto; display: block; }
+
+/* Force readable text color for elements that used text-white by default */
+.force-readable {
+  color: var(--foreground) !important;
 }
+
+/* Small utility to debug (remove later) */
+.debug-outline * { outline: 1px dashed rgba(0,0,0,0.03) !important; }

@@ -1,7 +1,7 @@
-import { motion } from 'framer-motion'
-import { Card, CardContent } from './ui/card'
-import { Button } from './ui/button'
-import { ShoppingCart, Heart, Star } from 'lucide-react'
+import { motion } from "framer-motion"
+import { Card, CardContent } from "./ui/card"
+import { Button } from "./ui/button"
+import { ShoppingCart, Heart, Star } from "lucide-react"
 
 const ArtisanProducts = () => {
   // Sample product data - in real app, this would come from API
@@ -10,56 +10,62 @@ const ArtisanProducts = () => {
       id: 1,
       title: "Handwoven Silk Scarf",
       price: 45,
-      image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&h=400&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&h=400&fit=crop",
       artisan: "Priya Sharma",
       rating: 4.8,
-      category: "Textiles"
+      category: "Textiles",
     },
     {
       id: 2,
       title: "Ceramic Pottery Bowl",
       price: 32,
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop",
       artisan: "Rajesh Kumar",
       rating: 4.9,
-      category: "Pottery"
+      category: "Pottery",
     },
     {
       id: 3,
       title: "Wooden Carved Mask",
       price: 78,
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop",
       artisan: "Maria Santos",
       rating: 4.7,
-      category: "Woodwork"
+      category: "Woodwork",
     },
     {
       id: 4,
       title: "Embroidered Cushion",
       price: 28,
-      image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&h=400&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&h=400&fit=crop",
       artisan: "Fatima Al-Zahra",
       rating: 4.6,
-      category: "Textiles"
+      category: "Textiles",
     },
     {
       id: 5,
       title: "Hand-painted Vase",
       price: 55,
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop",
       artisan: "Chen Wei",
       rating: 4.9,
-      category: "Pottery"
+      category: "Pottery",
     },
     {
       id: 6,
       title: "Beaded Jewelry Set",
       price: 65,
-      image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&h=400&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&h=400&fit=crop",
       artisan: "Aisha Johnson",
       rating: 4.8,
-      category: "Jewelry"
-    }
+      category: "Jewelry",
+    },
   ]
 
   return (
@@ -72,12 +78,12 @@ const ArtisanProducts = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6 hero-title">
             Artisan Creations
           </h2>
-          <p className="text-xl text-white/80 max-w-3xl mx-auto">
-            Discover unique handcrafted pieces from talented artisans around the world, 
-            enhanced by AI-powered recommendations and insights.
+          <p className="text-lg text-slate-700 max-w-3xl mx-auto">
+            Discover unique handcrafted pieces from talented artisans around the
+            world, enhanced by AI-powered recommendations and insights.
           </p>
         </motion.div>
 
@@ -89,6 +95,7 @@ const ArtisanProducts = () => {
             transition={{ duration: 1, ease: "easeOut" }}
             viewport={{ once: true }}
             className="flex space-x-6 overflow-hidden"
+            aria-hidden
           >
             <motion.div
               animate={{ x: [0, -100] }}
@@ -98,23 +105,25 @@ const ArtisanProducts = () => {
               {[...products, ...products].map((product, index) => (
                 <motion.div
                   key={`row1-${index}`}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.25 }}
                   className="flex-shrink-0"
                 >
-                  <Card className="w-80 bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
+                  <Card className="w-80 card-elev overflow-hidden">
                     <CardContent className="p-0">
                       <div className="relative">
                         <img
                           src={product.image}
-                          alt={product.title}
-                          className="w-full h-64 object-cover rounded-t-lg"
+                          alt={`${product.title} by ${product.artisan}`}
+                          className="w-full h-64 object-cover"
+                          loading="lazy"
                         />
                         <div className="absolute top-4 right-4">
                           <Button
                             size="icon"
                             variant="ghost"
-                            className="w-10 h-10 bg-black/50 hover:bg-black/70 text-white"
+                            className="w-10 h-10 bg-black/30 hover:bg-black/50 text-white"
+                            aria-label={`Like ${product.title}`}
                           >
                             <Heart className="h-5 w-5" />
                           </Button>
@@ -125,27 +134,33 @@ const ArtisanProducts = () => {
                           </span>
                         </div>
                       </div>
-                      
+
                       <div className="p-6">
                         <div className="flex items-center justify-between mb-2">
-                          <h3 className="text-lg font-semibold text-white">
+                          <h3 className="text-lg font-semibold text-slate-900">
                             {product.title}
                           </h3>
                           <div className="flex items-center space-x-1">
-                            <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                            <span className="text-white/80 text-sm">{product.rating}</span>
+                            <Star className="h-4 w-4 text-yellow-400" />
+                            <span className="text-slate-700 text-sm">
+                              {product.rating}
+                            </span>
                           </div>
                         </div>
-                        
-                        <p className="text-white/60 text-sm mb-4">
+
+                        <p className="text-sm text-slate-600 mb-4">
                           by {product.artisan}
                         </p>
-                        
+
                         <div className="flex items-center justify-between">
                           <span className="text-2xl font-bold gradient-text">
                             ${product.price}
                           </span>
-                          <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700">
+                          <Button
+                            size="lg"
+                            className="btn-primary"
+                            aria-label={`Buy ${product.title}`}
+                          >
                             <ShoppingCart className="h-4 w-4 mr-2" />
                             Buy
                           </Button>
@@ -167,32 +182,38 @@ const ArtisanProducts = () => {
             transition={{ duration: 1, ease: "easeOut" }}
             viewport={{ once: true }}
             className="flex space-x-6 overflow-hidden"
+            aria-hidden
           >
             <motion.div
               animate={{ x: [-100, 0] }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               className="flex space-x-6"
             >
-              {[...products.slice().reverse(), ...products.slice().reverse()].map((product, index) => (
+              {[
+                ...products.slice().reverse(),
+                ...products.slice().reverse(),
+              ].map((product, index) => (
                 <motion.div
                   key={`row2-${index}`}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.25 }}
                   className="flex-shrink-0"
                 >
-                  <Card className="w-80 bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
+                  <Card className="w-80 card-elev overflow-hidden">
                     <CardContent className="p-0">
                       <div className="relative">
                         <img
                           src={product.image}
-                          alt={product.title}
-                          className="w-full h-64 object-cover rounded-t-lg"
+                          alt={`${product.title} by ${product.artisan}`}
+                          className="w-full h-64 object-cover"
+                          loading="lazy"
                         />
                         <div className="absolute top-4 right-4">
                           <Button
                             size="icon"
                             variant="ghost"
-                            className="w-10 h-10 bg-black/50 hover:bg-black/70 text-white"
+                            className="w-10 h-10 bg-black/30 hover:bg-black/50 text-white"
+                            aria-label={`Like ${product.title}`}
                           >
                             <Heart className="h-5 w-5" />
                           </Button>
@@ -203,27 +224,33 @@ const ArtisanProducts = () => {
                           </span>
                         </div>
                       </div>
-                      
+
                       <div className="p-6">
                         <div className="flex items-center justify-between mb-2">
-                          <h3 className="text-lg font-semibold text-white">
+                          <h3 className="text-lg font-semibold text-slate-900">
                             {product.title}
                           </h3>
                           <div className="flex items-center space-x-1">
-                            <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                            <span className="text-white/80 text-sm">{product.rating}</span>
+                            <Star className="h-4 w-4 text-yellow-400" />
+                            <span className="text-slate-700 text-sm">
+                              {product.rating}
+                            </span>
                           </div>
                         </div>
-                        
-                        <p className="text-white/60 text-sm mb-4">
+
+                        <p className="text-sm text-slate-600 mb-4">
                           by {product.artisan}
                         </p>
-                        
+
                         <div className="flex items-center justify-between">
                           <span className="text-2xl font-bold gradient-text">
                             ${product.price}
                           </span>
-                          <Button className="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700">
+                          <Button
+                            size="lg"
+                            className="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white"
+                            aria-label={`Buy ${product.title}`}
+                          >
                             <ShoppingCart className="h-4 w-4 mr-2" />
                             Buy
                           </Button>
@@ -245,10 +272,7 @@ const ArtisanProducts = () => {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <Button 
-            size="lg"
-            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 text-lg font-semibold rounded-full glow-effect"
-          >
+          <Button size="lg" className="btn-primary btn-touch">
             View All Products
           </Button>
         </motion.div>

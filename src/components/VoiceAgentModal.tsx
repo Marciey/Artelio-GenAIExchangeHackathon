@@ -12,12 +12,12 @@ const VoiceAgentModal = () => {
 
   const handleVoiceToggle = () => {
     setIsListening(!isListening)
-    // Here you would integrate with your voice recognition API
+    // integrate with voice recognition API here
   }
 
   const handleDemoVoice = () => {
     setIsPlaying(!isPlaying)
-    // Here you would play a demo voice response
+    // play demo voice response here
   }
 
   const handleClear = () => {
@@ -39,37 +39,35 @@ const VoiceAgentModal = () => {
         >
           <Mic className="h-8 w-8 text-white" />
         </Button>
-        
-        {/* Pulse animation */}
+
+        {/* Pulse animation (subtle) */}
         <motion.div
-          className="absolute inset-0 rounded-full bg-purple-400/30"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.7, 0, 0.7] }}
+          className="absolute inset-0 rounded-full bg-purple-400/20"
+          animate={{ scale: [1, 1.15, 1], opacity: [0.7, 0, 0.7] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
       </motion.div>
 
       {/* Voice Agent Dialog */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        {/* Keep the dialog visually dark for focus — text inside stays white */}
         <DialogContent className="max-w-md bg-black/90 border-white/20 text-white">
           <DialogHeader>
             <DialogTitle className="text-center text-xl font-bold gradient-text">
               Voice Agent
             </DialogTitle>
           </DialogHeader>
-          
+
           <div className="space-y-6">
             {/* Main Voice Button */}
             <div className="flex justify-center">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   onClick={handleVoiceToggle}
                   size="lg"
                   className={`w-24 h-24 rounded-full ${
-                    isListening 
-                      ? 'bg-red-600 hover:bg-red-700' 
+                    isListening
+                      ? 'bg-red-600 hover:bg-red-700'
                       : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700'
                   } shadow-2xl`}
                 >
@@ -82,7 +80,7 @@ const VoiceAgentModal = () => {
               </motion.div>
             </div>
 
-            {/* Status Text */}
+            {/* Status Text - keep white because the dialog background is dark */}
             <p className="text-center text-white/80">
               {isListening ? 'Listening...' : 'Click to speak with your agents'}
             </p>
@@ -97,7 +95,7 @@ const VoiceAgentModal = () => {
                 <Play className="mr-2 h-4 w-4" />
                 Demo Voice
               </Button>
-              
+
               <Button
                 onClick={handleClear}
                 variant="outline"
@@ -108,7 +106,7 @@ const VoiceAgentModal = () => {
               </Button>
             </div>
 
-            {/* Conversation Preview */}
+            {/* Conversation Preview - card inside dialog is dark, keep white text */}
             <Card className="bg-white/5 border-white/10">
               <CardContent className="p-4">
                 <div className="space-y-2">
@@ -118,6 +116,7 @@ const VoiceAgentModal = () => {
                       "Hello! I'm your AI assistant. How can I help you today?"
                     </p>
                   </div>
+
                   {isListening && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
@@ -125,9 +124,7 @@ const VoiceAgentModal = () => {
                       className="flex items-start space-x-2"
                     >
                       <div className="w-2 h-2 bg-blue-400 rounded-full mt-2" />
-                      <p className="text-sm text-white/80">
-                        Listening for your input...
-                      </p>
+                      <p className="text-sm text-white/80">Listening for your input...</p>
                     </motion.div>
                   )}
                 </div>
