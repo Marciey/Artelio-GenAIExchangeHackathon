@@ -78,43 +78,14 @@ const AgentWorkflow = () => {
   ])
 
   const agents: AgentNode[] = [
-    {
-      id: 'voice',
-      name: 'Voice Agent',
-      type: 'input',
-      status: 'completed',
-      icon: Mic,
-      color: '#8B5CF6'
-    },
-    {
-      id: 'inventory',
-      name: 'Inventory Agent',
-      type: 'processing',
-      status: 'completed',
-      icon: ShoppingCart,
-      color: '#F59E0B'
-    },
-    {
-      id: 'marketing',
-      name: 'Marketing Agent',
-      type: 'processing',
-      status: 'active',
-      icon: TrendingUp,
-      color: '#10B981'
-    },
-    {
-      id: 'learning',
-      name: 'Learning Agent',
-      type: 'output',
-      status: 'pending',
-      icon: BookOpen,
-      color: '#EF4444'
-    }
+    { id: 'voice', name: 'Voice Agent', type: 'input', status: 'completed', icon: Mic, color: '#8B5CF6' },
+    { id: 'inventory', name: 'Inventory Agent', type: 'processing', status: 'completed', icon: ShoppingCart, color: '#F59E0B' },
+    { id: 'marketing', name: 'Marketing Agent', type: 'processing', status: 'active', icon: TrendingUp, color: '#10B981' },
+    { id: 'learning', name: 'Learning Agent', type: 'output', status: 'pending', icon: BookOpen, color: '#EF4444' }
   ]
 
   useEffect(() => {
     if (!svgRef.current) return
-
     const svg = d3.select(svgRef.current)
     svg.selectAll('*').remove()
 
@@ -124,20 +95,17 @@ const AgentWorkflow = () => {
 
     svg.attr('width', width).attr('height', height)
 
-    // Create nodes
     const nodes = agents.map((agent, index) => ({
       ...agent,
       x: margin.left + (index * (width - margin.left - margin.right) / (agents.length - 1)),
       y: height / 2
     }))
 
-    // Create links
     const links = nodes.slice(0, -1).map((node, index) => ({
       source: node,
       target: nodes[index + 1]
     }))
 
-    // Draw links
     svg.selectAll('.link')
       .data(links)
       .enter()
@@ -147,11 +115,10 @@ const AgentWorkflow = () => {
       .attr('y1', d => d.source.y!)
       .attr('x2', d => d.target.x!)
       .attr('y2', d => d.target.y!)
-      .attr('stroke', '#374151')
+      .attr('stroke', '#CBD5E1')
       .attr('stroke-width', 3)
       .attr('stroke-dasharray', '5,5')
 
-    // Draw nodes
     const nodeGroups = svg.selectAll('.node')
       .data(nodes)
       .enter()
@@ -159,23 +126,13 @@ const AgentWorkflow = () => {
       .attr('class', 'node')
       .attr('transform', d => `translate(${d.x}, ${d.y})`)
 
-    // Add circles
     nodeGroups.append('circle')
       .attr('r', 40)
-      .attr('fill', d => {
-        switch (d.status) {
-          case 'completed': return d.color
-          case 'active': return d.color
-          case 'pending': return '#374151'
-          case 'error': return '#EF4444'
-          default: return '#374151'
-        }
-      })
-      .attr('stroke', '#FFFFFF')
+      .attr('fill', d => d.status === 'pending' ? '#E2E8F0' : d.color)
+      .attr('stroke', '#fff')
       .attr('stroke-width', 3)
       .attr('opacity', d => d.status === 'pending' ? 0.5 : 1)
 
-    // Add icons
     nodeGroups.append('text')
       .attr('text-anchor', 'middle')
       .attr('dy', '0.35em')
@@ -191,16 +148,14 @@ const AgentWorkflow = () => {
         return iconMap[d.icon.name] || '🤖'
       })
 
-    // Add labels
     nodeGroups.append('text')
       .attr('text-anchor', 'middle')
       .attr('dy', '60px')
-      .attr('fill', 'white')
+      .attr('fill', '#1E293B')
       .attr('font-size', '14px')
-      .attr('font-weight', 'bold')
+      .attr('font-weight', '600')
       .text(d => d.name)
 
-    // Add status indicators
     nodeGroups.append('circle')
       .attr('r', 8)
       .attr('cx', 30)
@@ -209,17 +164,15 @@ const AgentWorkflow = () => {
         switch (d.status) {
           case 'completed': return '#10B981'
           case 'active': return '#F59E0B'
-          case 'pending': return '#6B7280'
+          case 'pending': return '#94A3B8'
           case 'error': return '#EF4444'
-          default: return '#6B7280'
+          default: return '#94A3B8'
         }
       })
-
   }, [agents])
 
   const handleStartWorkflow = () => {
     setIsRunning(true)
-    // Simulate workflow progression
     const interval = setInterval(() => {
       setCurrentStep(prev => {
         if (prev >= workflowSteps.length - 1) {
@@ -240,10 +193,10 @@ const AgentWorkflow = () => {
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'completed': return <CheckCircle className="h-5 w-5 text-green-400" />
-      case 'active': return <Clock className="h-5 w-5 text-yellow-400 animate-spin" />
-      case 'error': return <AlertCircle className="h-5 w-5 text-red-400" />
-      default: return <Clock className="h-5 w-5 text-gray-400" />
+      case 'completed': return <CheckCircle className="h-5 w-5 text-green-500" />
+      case 'active': return <Clock className="h-5 w-5 text-yellow-500 animate-spin" />
+      case 'error': return <AlertCircle className="h-5 w-5 text-red-500" />
+      default: return <Clock className="h-5 w-5 text-slate-400" />
     }
   }
 
@@ -257,23 +210,15 @@ const AgentWorkflow = () => {
         className="flex justify-between items-center"
       >
         <div>
-          <h1 className="text-4xl font-bold gradient-text">Agent Workflow</h1>
-          <p className="text-white/70 mt-2">Monitor and control your AI agents in real-time</p>
+          <h1 className="hero-title gradient-text">Agent Workflow</h1>
+          <p className="text-muted-strong mt-2">Monitor and control your AI agents in real-time</p>
         </div>
         <div className="flex space-x-4">
-          <Button
-            onClick={handleStartWorkflow}
-            disabled={isRunning}
-            className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
-          >
+          <Button onClick={handleStartWorkflow} disabled={isRunning} className="btn-primary">
             <Play className="mr-2 h-4 w-4" />
             {isRunning ? 'Running...' : 'Start Workflow'}
           </Button>
-          <Button
-            onClick={handleResetWorkflow}
-            variant="outline"
-            className="border-white/30 text-white hover:bg-white/10"
-          >
+          <Button onClick={handleResetWorkflow} variant="outline" className="btn-secondary">
             <RotateCcw className="mr-2 h-4 w-4" />
             Reset
           </Button>
@@ -281,15 +226,11 @@ const AgentWorkflow = () => {
       </motion.div>
 
       {/* Workflow Visualization */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-      >
-        <Card className="bg-white/5 border-white/10">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
+        <Card className="card-elev">
           <CardHeader>
-            <CardTitle className="text-white flex items-center">
-              <Brain className="mr-2 h-5 w-5" />
+            <CardTitle className="text-slate-900 flex items-center">
+              <Brain className="mr-2 h-5 w-5 text-slate-700" />
               AI Agent Flow Visualization
             </CardTitle>
           </CardHeader>
@@ -302,15 +243,11 @@ const AgentWorkflow = () => {
       </motion.div>
 
       {/* Workflow Steps */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <Card className="bg-white/5 border-white/10">
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
+        <Card className="card-elev">
           <CardHeader>
-            <CardTitle className="text-white flex items-center">
-              <Activity className="mr-2 h-5 w-5" />
+            <CardTitle className="text-slate-900 flex items-center">
+              <Activity className="mr-2 h-5 w-5 text-slate-700" />
               Workflow Steps
             </CardTitle>
           </CardHeader>
@@ -323,42 +260,36 @@ const AgentWorkflow = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className={`p-4 rounded-lg border transition-all duration-300 ${
-                    step.status === 'completed' 
-                      ? 'bg-green-500/10 border-green-500/30' 
+                    step.status === 'completed'
+                      ? 'bg-green-100 border-green-300'
                       : step.status === 'active'
-                      ? 'bg-yellow-500/10 border-yellow-500/30'
-                      : 'bg-white/5 border-white/10'
+                      ? 'bg-yellow-100 border-yellow-300'
+                      : 'bg-slate-50 border-slate-200'
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                       {getStatusIcon(step.status)}
                       <div>
-                        <h3 className="text-white font-semibold">{step.agent}</h3>
-                        <p className="text-white/70 text-sm">{step.details}</p>
-                        {step.timestamp && (
-                          <p className="text-white/50 text-xs mt-1">{step.timestamp}</p>
-                        )}
+                        <h3 className="text-slate-900 font-semibold">{step.agent}</h3>
+                        <p className="text-slate-600 text-sm">{step.details}</p>
+                        {step.timestamp && <p className="text-slate-400 text-xs mt-1">{step.timestamp}</p>}
                       </div>
                     </div>
                     <div className="text-right">
                       {step.duration ? (
-                        <p className="text-white/70 text-sm">{step.duration}s</p>
+                        <p className="text-slate-600 text-sm">{step.duration}s</p>
                       ) : step.status === 'active' ? (
                         <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
-                          <span className="text-yellow-400 text-sm">Processing...</span>
+                          <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+                          <span className="text-yellow-600 text-sm">Processing...</span>
                         </div>
                       ) : (
-                        <p className="text-white/50 text-sm">Pending</p>
+                        <p className="text-slate-400 text-sm">Pending</p>
                       )}
                     </div>
                   </div>
-                  {step.status === 'active' && (
-                    <div className="mt-3">
-                      <Progress value={33} className="h-2" />
-                    </div>
-                  )}
+                  {step.status === 'active' && <div className="mt-3"><Progress value={33} className="h-2" /></div>}
                 </motion.div>
               ))}
             </div>
@@ -367,38 +298,33 @@ const AgentWorkflow = () => {
       </motion.div>
 
       {/* Agent Details */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-      >
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {agents.map((agent) => (
-          <Card key={agent.id} className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
+          <Card key={agent.id} className="card-elev hover:scale-102 transition-all duration-300">
             <CardContent className="p-6 text-center">
               <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${
-                agent.status === 'completed' 
-                  ? 'bg-green-500/20' 
+                agent.status === 'completed'
+                  ? 'bg-green-100'
                   : agent.status === 'active'
-                  ? 'bg-yellow-500/20'
-                  : 'bg-gray-500/20'
+                  ? 'bg-yellow-100'
+                  : 'bg-slate-100'
               }`}>
                 <agent.icon className={`h-8 w-8 ${
-                  agent.status === 'completed' 
-                    ? 'text-green-400' 
+                  agent.status === 'completed'
+                    ? 'text-green-600'
                     : agent.status === 'active'
-                    ? 'text-yellow-400'
-                    : 'text-gray-400'
+                    ? 'text-yellow-600'
+                    : 'text-slate-400'
                 }`} />
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">{agent.name}</h3>
-              <p className="text-white/70 text-sm mb-4 capitalize">{agent.type} Agent</p>
+              <h3 className="text-lg font-semibold text-slate-900 mb-2">{agent.name}</h3>
+              <p className="text-slate-500 text-sm mb-4 capitalize">{agent.type} Agent</p>
               <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
-                agent.status === 'completed' 
-                  ? 'bg-green-500/20 text-green-400' 
+                agent.status === 'completed'
+                  ? 'bg-green-100 text-green-700'
                   : agent.status === 'active'
-                  ? 'bg-yellow-500/20 text-yellow-400'
-                  : 'bg-gray-500/20 text-gray-400'
+                  ? 'bg-yellow-100 text-yellow-700'
+                  : 'bg-slate-100 text-slate-500'
               }`}>
                 {agent.status}
               </div>

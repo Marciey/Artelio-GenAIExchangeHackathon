@@ -61,28 +61,32 @@ const Dashboard = () => {
       value: "$24,500",
       change: "+12.5%",
       icon: DollarSign,
-      color: "text-green-400"
+      color: "text-green-400",
+      bg: "bg-green-600/10"
     },
     {
       title: "Active Users",
       value: "1,234",
       change: "+8.2%",
       icon: Users,
-      color: "text-blue-400"
+      color: "text-blue-400",
+      bg: "bg-blue-600/10"
     },
     {
       title: "AI Sessions",
       value: "3,456",
       change: "+15.3%",
       icon: Brain,
-      color: "text-purple-400"
+      color: "text-purple-400",
+      bg: "bg-purple-600/10"
     },
     {
       title: "Products Sold",
       value: "892",
       change: "+6.7%",
       icon: ShoppingCart,
-      color: "text-orange-400"
+      color: "text-orange-400",
+      bg: "bg-orange-600/10"
     }
   ]
 
@@ -131,10 +135,10 @@ const Dashboard = () => {
         className="flex justify-between items-center"
       >
         <div>
-          <h1 className="text-4xl font-bold gradient-text">Dashboard</h1>
-          <p className="text-white/70 mt-2">Welcome back! Here's what's happening with your art business.</p>
+          <h1 className="hero-title font-display gradient-text">Dashboard</h1>
+          <p className="text-slate-700 mt-2">Welcome back! Here's what's happening with your art business.</p>
         </div>
-        <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700">
+        <Button className="btn-primary">
           <Activity className="mr-2 h-4 w-4" />
           View Reports
         </Button>
@@ -148,16 +152,16 @@ const Dashboard = () => {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
       >
         {stats.map((stat, index) => (
-          <Card key={index} className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
+          <Card key={index} className="card-elev hover:scale-101 transition-all duration-300">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-white/70 text-sm font-medium">{stat.title}</p>
-                  <p className="text-2xl font-bold text-white mt-1">{stat.value}</p>
+                  <p className="text-muted-strong text-sm font-medium">{stat.title}</p>
+                  <p className="text-2xl font-bold text-slate-900 mt-1">{stat.value}</p>
                   <p className={`text-sm ${stat.color} mt-1`}>{stat.change}</p>
                 </div>
-                <div className={`p-3 rounded-full bg-white/10 ${stat.color}`}>
-                  <stat.icon className="h-6 w-6" />
+                <div className={`p-3 rounded-full ${stat.bg}`}>
+                  <stat.icon className={`h-6 w-6 ${stat.color.replace('text-', 'text-')}`} />
                 </div>
               </div>
             </CardContent>
@@ -173,28 +177,28 @@ const Dashboard = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <Card className="bg-white/5 border-white/10">
+          <Card className="card-elev">
             <CardHeader>
-              <CardTitle className="text-white flex items-center">
-                <TrendingUp className="mr-2 h-5 w-5" />
+              <CardTitle className="text-slate-900 flex items-center">
+                <TrendingUp className="mr-2 h-5 w-5 text-slate-700" />
                 Sales & Orders
               </CardTitle>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={salesData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#E6E9EE" />
                   <XAxis dataKey="month" stroke="#9CA3AF" />
                   <YAxis stroke="#9CA3AF" />
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: '#1F2937', 
-                      border: '1px solid #374151',
+                      backgroundColor: '#ffffff', 
+                      border: '1px solid #E6E9EE',
                       borderRadius: '8px',
-                      color: '#F9FAFB'
+                      color: '#0f172a'
                     }} 
                   />
-                  <Bar dataKey="sales" fill="#8B5CF6" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="sales" fill="#8B5CF6" radius={[6, 6, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </CardContent>
@@ -207,10 +211,10 @@ const Dashboard = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <Card className="bg-white/5 border-white/10">
+          <Card className="card-elev">
             <CardHeader>
-              <CardTitle className="text-white flex items-center">
-                <Brain className="mr-2 h-5 w-5" />
+              <CardTitle className="text-slate-900 flex items-center">
+                <Brain className="mr-2 h-5 w-5 text-slate-700" />
                 AI Agent Usage
               </CardTitle>
             </CardHeader>
@@ -232,10 +236,10 @@ const Dashboard = () => {
                   </Pie>
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: '#1F2937', 
-                      border: '1px solid #374151',
+                      backgroundColor: '#ffffff', 
+                      border: '1px solid #E6E9EE',
                       borderRadius: '8px',
-                      color: '#F9FAFB'
+                      color: '#0f172a'
                     }} 
                   />
                 </PieChart>
@@ -251,25 +255,25 @@ const Dashboard = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        <Card className="bg-white/5 border-white/10">
+        <Card className="card-elev">
           <CardHeader>
-            <CardTitle className="text-white flex items-center">
-              <Activity className="mr-2 h-5 w-5" />
+            <CardTitle className="text-slate-900 flex items-center">
+              <Activity className="mr-2 h-5 w-5 text-slate-700" />
               System Performance (24h)
             </CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <AreaChart data={performanceData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#E6E9EE" />
                 <XAxis dataKey="time" stroke="#9CA3AF" />
                 <YAxis stroke="#9CA3AF" />
                 <Tooltip 
                   contentStyle={{ 
-                    backgroundColor: '#1F2937', 
-                    border: '1px solid #374151',
+                    backgroundColor: '#ffffff', 
+                    border: '1px solid #E6E9EE',
                     borderRadius: '8px',
-                    color: '#F9FAFB'
+                    color: '#0f172a'
                   }} 
                 />
                 <Area 
@@ -281,7 +285,7 @@ const Dashboard = () => {
                 <defs>
                   <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.8}/>
-                    <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0.1}/>
+                    <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0.12}/>
                   </linearGradient>
                 </defs>
               </AreaChart>
@@ -298,10 +302,10 @@ const Dashboard = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <Card className="bg-white/5 border-white/10">
+          <Card className="card-elev">
             <CardHeader>
-              <CardTitle className="text-white flex items-center">
-                <Activity className="mr-2 h-5 w-5" />
+              <CardTitle className="text-slate-900 flex items-center">
+                <Activity className="mr-2 h-5 w-5 text-slate-700" />
                 Recent Activity
               </CardTitle>
             </CardHeader>
@@ -313,8 +317,8 @@ const Dashboard = () => {
                       <activity.icon className="h-4 w-4 text-white" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-white font-medium">{activity.description}</p>
-                      <p className="text-white/60 text-sm">{activity.time}</p>
+                      <p className="text-slate-900 font-medium">{activity.description}</p>
+                      <p className="text-slate-500 text-sm">{activity.time}</p>
                     </div>
                   </div>
                 ))}
@@ -329,10 +333,10 @@ const Dashboard = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <Card className="bg-white/5 border-white/10">
+          <Card className="card-elev">
             <CardHeader>
-              <CardTitle className="text-white flex items-center">
-                <Star className="mr-2 h-5 w-5" />
+              <CardTitle className="text-slate-900 flex items-center">
+                <Star className="mr-2 h-5 w-5 text-slate-700" />
                 Top Products
               </CardTitle>
             </CardHeader>
@@ -344,27 +348,27 @@ const Dashboard = () => {
                   { name: "Wooden Carved Mask", sales: 28, views: 850, likes: 54 },
                   { name: "Embroidered Cushion", sales: 25, views: 720, likes: 43 }
                 ].map((product, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                  <div key={index} className="flex items-center justify-between p-3 bg-white/3 rounded-lg">
                     <div>
-                      <p className="text-white font-medium">{product.name}</p>
-                      <div className="flex items-center space-x-4 text-sm text-white/60">
+                      <p className="text-slate-900 font-medium">{product.name}</p>
+                      <div className="flex items-center space-x-4 text-sm text-slate-500">
                         <span className="flex items-center">
-                          <ShoppingCart className="h-3 w-3 mr-1" />
+                          <ShoppingCart className="h-3 w-3 mr-1 text-slate-500" />
                           {product.sales}
                         </span>
                         <span className="flex items-center">
-                          <Eye className="h-3 w-3 mr-1" />
+                          <Eye className="h-3 w-3 mr-1 text-slate-500" />
                           {product.views}
                         </span>
                         <span className="flex items-center">
-                          <Heart className="h-3 w-3 mr-1" />
+                          <Heart className="h-3 w-3 mr-1 text-slate-500" />
                           {product.likes}
                         </span>
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-green-400 font-semibold">${product.sales * 25}</p>
-                      <p className="text-white/60 text-sm">revenue</p>
+                      <p className="text-green-600 font-semibold">${product.sales * 25}</p>
+                      <p className="text-slate-500 text-sm">revenue</p>
                     </div>
                   </div>
                 ))}
