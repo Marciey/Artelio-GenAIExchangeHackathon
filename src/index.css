@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------- design tokens (kept exactly) ---------- */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -49,41 +50,212 @@
   }
 }
 
+/* Keep earlier global base styles but enhance typography & background */
 @layer base {
   * {
     @apply border-border;
   }
+
+  /* Use Inter for body and Playfair for headings (ensure index.html loads Google fonts) */
+  :root {
+    --bg-start: #f6eef9;  /* subtle warm */
+    --bg-end:   #eef6fb;  /* pale blue */
+    --hero-text: #0f172a; /* dark slate */
+    --muted-text: #6b7280;
+    --accent-1: #ff6b35;
+    --accent-2: #ffb86b;
+  }
+
+  html, body {
+    height: 100%;
+  }
+
   body {
     @apply bg-background text-foreground;
+    /* override to nicer visible colors */
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+    color: rgb(31 41 55); /* improved readable color */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Headings use display font if available */
+  h1, h2, h3, .font-display {
+    font-family: 'Playfair Display', Georgia, Cambria, "Times New Roman", serif;
+  }
+
+  /* Better default paragraph contrast */
+  p, li, span {
+    color: rgba(31, 41, 55, 0.92);
+  }
+
+  /* Focus ring for accessibility */
+  :focus-visible {
+    outline: 3px solid rgba(99,102,241,0.22);
+    outline-offset: 3px;
+    border-radius: 6px;
   }
 }
 
-/* Custom styles for Artelio */
+/* ---------- Custom styles for Artelio (retained + enhanced) ---------- */
+
+/* starry-bg kept as before */
 .starry-bg {
   background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
-  background-image: 
+  background-image:
     radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
     radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
     radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
   background-size: 200px 200px, 300px 300px, 250px 250px;
 }
 
+/* Gradient text for headline (kept and improved) */
 .gradient-text {
-  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffd700 100%);
+  background: linear-gradient(90deg, #ff6b35 0%, #f7931e 50%, #ffd700 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  display: inline-block;
+  letter-spacing: -0.5px;
 }
 
+/* subtle glow for CTA usage */
 .glow-effect {
-  box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+  box-shadow: 0 8px 30px rgba(255, 107, 53, 0.14);
 }
 
+/* keep float animation */
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
-
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-20px); }
+}
+
+/* ---------- New helpful utilities ---------- */
+
+/* Elevated card style to reuse across components */
+.card-elev {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(18,22,34,0.08);
+  border-radius: 12px;
+}
+
+/* Primary CTA -- use this on main buttons (.btn-primary) */
+.btn-primary {
+  background: linear-gradient(90deg,#2f6df6 0%, #6f3ff3 100%);
+  color: white;
+  padding: 0.8rem 1.8rem;
+  border-radius: 9999px;
+  box-shadow: 0 12px 36px rgba(47,109,246,0.18);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Secondary CTA */
+.btn-secondary {
+  background: linear-gradient(90deg,#ff7a3b 0%, #ffb86b 100%);
+  color: white;
+  padding: 0.8rem 1.8rem;
+  border-radius: 9999px;
+  box-shadow: 0 12px 36px rgba(255,120,59,0.12);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Muted-but-strong text for small descriptions */
+.text-muted-strong {
+  color: #9CA3AF;
+}
+
+/* Floating voice FAB (place <div class="fab-voice"> inside JSX if desired) */
+.fab-voice {
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  background: linear-gradient(135deg,#7f3ff3,#ff6b35);
+  box-shadow: 0 16px 40px rgba(127,63,243,0.22);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index: 60;
+  cursor: pointer;
+}
+
+/* Small icon circle for agent icons */
+.icon-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow: 0 8px 20px rgba(2,6,23,0.08);
+}
+
+/* Responsive hero headline sizes when you add class .hero-title */
+.hero-title {
+  font-size: 3.25rem;
+  line-height: 1.02;
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .hero-title { font-size: 4.5rem; }
+}
+@media (min-width: 1024px) {
+  .hero-title { font-size: 6rem; }
+}
+
+/* Card content inner spacing utility */
+.card-inner {
+  padding: 1rem;
+}
+
+/* small helper for badges / status */
+.badge {
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  padding:0.25rem 0.6rem;
+  background: rgba(255,255,255,0.03);
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+/* Improve form inputs (if used) */
+.input-pleasant {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  color: #0f172a;
+}
+
+/* ---------- small accessibility polish ---------- */
+/* increase tappable areas on small buttons */
+.btn-touch {
+  padding: 0.85rem 1.25rem;
+  min-height: 44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ensure images are responsive */
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
