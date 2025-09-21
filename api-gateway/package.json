@@ -1,0 +1,33 @@
+{
+  "name": "api-gateway",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@google-cloud/firestore": "^7.11.4",
+    "@google-cloud/pubsub": "^5.2.0",
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.6",
+    "@types/caseless": "^0.12.5",
+    "@types/express": "^5.0.3",
+    "@types/long": "^4.0.2",
+    "@types/node": "^24.5.2",
+    "@types/request": "^2.48.13",
+    "@types/tough-cookie": "^4.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
