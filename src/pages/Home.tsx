@@ -57,32 +57,42 @@ const Home = () => {
 
           {/* Feature Cards */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="flex flex-col md:flex-row gap-6 justify-center items-center mb-16"
-          >
-            <Card className="card-elev hover:scale-105 transition-all duration-300 cursor-pointer">
-              <CardContent className="p-6 flex items-center space-x-3">
-                <Mic className="h-6 w-6 text-purple-600" />
-                <span className="text-slate-800 font-medium">Voice-First Interface</span>
-              </CardContent>
-            </Card>
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.4 }}
+  className="flex flex-col md:flex-row gap-6 justify-center items-center mb-16"
+>
+  {/* Voice-First Interface */}
+  <Card className="card-elev bg-gradient-to-r from-purple-100 to-purple-200 hover:from-purple-200 hover:to-purple-300 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+    <CardContent className="p-6 flex items-center space-x-3">
+      <div className="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center shadow-md">
+        <Mic className="h-5 w-5 text-white" />
+      </div>
+      <span className="text-purple-900 font-semibold">Voice-First Interface</span>
+    </CardContent>
+  </Card>
 
-            <Card className="card-elev hover:scale-105 transition-all duration-300 cursor-pointer">
-              <CardContent className="p-6 flex items-center space-x-3">
-                <Users className="h-6 w-6 text-orange-600" />
-                <span className="text-slate-800 font-medium">Multi-Agent Collaboration</span>
-              </CardContent>
-            </Card>
+  {/* Multi-Agent Collaboration */}
+  <Card className="card-elev bg-gradient-to-r from-orange-100 to-orange-200 hover:from-orange-200 hover:to-orange-300 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+    <CardContent className="p-6 flex items-center space-x-3">
+      <div className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center shadow-md">
+        <Users className="h-5 w-5 text-white" />
+      </div>
+      <span className="text-orange-900 font-semibold">Multi-Agent Collaboration</span>
+    </CardContent>
+  </Card>
 
-            <Card className="card-elev hover:scale-105 transition-all duration-300 cursor-pointer">
-              <CardContent className="p-6 flex items-center space-x-3">
-                <Heart className="h-6 w-6 text-green-600" />
-                <span className="text-slate-800 font-medium">Folk Art Inspired</span>
-              </CardContent>
-            </Card>
-          </motion.div>
+  {/* Folk Art Inspired */}
+  <Card className="card-elev bg-gradient-to-r from-green-100 to-green-200 hover:from-green-200 hover:to-green-300 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+    <CardContent className="p-6 flex items-center space-x-3">
+      <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center shadow-md">
+        <Heart className="h-5 w-5 text-white" />
+      </div>
+      <span className="text-green-900 font-semibold">Folk Art Inspired</span>
+    </CardContent>
+  </Card>
+</motion.div>
+
 
           {/* Dashboard and Agent Workflow Buttons */}
           <motion.div
